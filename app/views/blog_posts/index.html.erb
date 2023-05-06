@@ -2,6 +2,6 @@
 
 <% @blogposts.each do |blog| %>
   <span><%= blog.id %></span>
-  <h4><%= link_to blog.tittle, blogpost_path(blog.id)%></h4>
+  <h4><%= link_to blog.tittle, blog_post_path(blog.id)%></h4>
   <p><%= blog.body %></p>
 <%end%>
