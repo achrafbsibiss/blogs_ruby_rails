@@ -1,6 +1,5 @@
 class BlogPostsController < ApplicationController
-
-  before_action :set_blogpost, only:[:show, :update, :edit, :destroy]
+  before_action :set_blog_post, only:[:show]
 
   def index
     @blogposts = BlogPost.all
@@ -11,7 +10,7 @@ class BlogPostsController < ApplicationController
   end
 
   private
-  def set_blogpost
+  def set_blog_post
     @blogpost = BlogPost.find(params[:id])
   end
 end
