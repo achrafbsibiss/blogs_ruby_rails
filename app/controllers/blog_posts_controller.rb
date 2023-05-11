@@ -1,13 +1,11 @@
 class BlogPostsController < ApplicationController
-
-  before_action :set_blogpost, only:[:show, :update, :edit, :destroy]
+  before_action :set_blogpost, only: %i[show update edit destroy]
 
   def index
     @blogposts = BlogPost.all
   end
 
-  def show 
-  end
+  def show; end
 
   def new
     @blogpost = BlogPost.new
@@ -16,17 +14,14 @@ class BlogPostsController < ApplicationController
   def create
     @blogpost = BlogPost.new(blogpost_params)
 
-    if @blogpost.save 
-      redirect_to "/"
-    else
+    if @blogpost.save;
+       redirect_to '/' 
     end
   end
 
-  def edit
-  end
+  def edit; end
 
-  def update
-  end
+  def update; end
 
   def destroy
     @blogpost.destroy
@@ -39,6 +34,6 @@ class BlogPostsController < ApplicationController
   end
 
   def blogpost_params
-    params.require(:blog_post).permit(:tittle , :body)
+    params.require(:blog_post).permit(:tittle, :body)
   end
 end
