@@ -25,12 +25,16 @@ class BlogPostsController < ApplicationController
 
   def update
     if @blogpost.update(blogpost_params)
-      redirect_to blog_post_path(params.id)
+      redirect_to @blogpost
     end
   end
 
   def destroy
-    @blogpost.destroy
+    if @blogpost.destroy
+      redirect_to '/'
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
