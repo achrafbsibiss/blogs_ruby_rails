@@ -1,5 +1,7 @@
 <h1>hello world</h1>
-<%=link_to "new blog", new_blog_post_path%><br>
+<%if user_signed_in?%>
+  <%=link_to "new blog", new_blog_post_path%><br>
+<%end%>
 
 <% @blogposts.each do |blog| %>
   <hr>
@@ -8,8 +10,10 @@
   <p><%= blog.body %></p>
   <div>
     <%=link_to "Show", blog_post_path(blog.id) ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
-    <%=link_to "edit", blog_post_path(blog.id) ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
-    <%=link_to "delete", blog_post_path(blog.id),data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+    <%if user_signed_in?%>
+      <%=link_to "edit", edit_blog_post_path(blog.id) ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+      <%=link_to "delete", blog_post_path(blog.id),data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+    <%end%>
   <div>
   <br>
 <%end%>
