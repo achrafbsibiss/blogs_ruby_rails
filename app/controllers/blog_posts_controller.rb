@@ -1,4 +1,5 @@
 class BlogPostsController < ApplicationController
+  before_action :authenticate_user!, except: %i[show index]
   before_action :set_blogpost, only: %i[show update edit destroy]
 
   def index
